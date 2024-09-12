@@ -39,7 +39,7 @@ def capture_tmux(params) -> None:
 
     if lines:
       while True:
-        if sentry_pinged():
+        if is_url_pingable("https://sentry.io"):
           with sentry_sdk.configure_scope() as scope:
             bind_user()
             scope.set_extra("tmux_log", "\n".join(lines))

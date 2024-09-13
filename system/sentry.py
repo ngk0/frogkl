@@ -21,9 +21,9 @@ CRASHES_DIR = "/data/crashes/"
 
 class SentryProject(Enum):
   # python project
-  SELFDRIVE = "https://b42f6e8bea596ec3d7dc1d9a80280027@o4507524429185024.ingest.us.sentry.io/4507524452057088"
+  SELFDRIVE = "https://5ad1714d27324c74a30f9c538bff3b8d@o4505034923769856.ingest.us.sentry.io/4505034930651136"
   # native project
-  SELFDRIVE_NATIVE = "https://b42f6e8bea596ec3d7dc1d9a80280027@o4507524429185024.ingest.us.sentry.io/4507524452057088"
+  SELFDRIVE_NATIVE = "https://5ad1714d27324c74a30f9c538bff3b8d@o4505034923769856.ingest.us.sentry.io/4505034930651136"
 
 
 def bind_user() -> None:
@@ -181,7 +181,7 @@ def set_tag(key: str, value: str) -> None:
 
 def init(project: SentryProject) -> bool:
   build_metadata = get_build_metadata()
-  FrogPilot = "FrogAi" in build_metadata.openpilot.git_origin
+  FrogPilot = "frogai" in build_metadata.openpilot.git_origin.lower()
   if not FrogPilot or PC:
     return False
 

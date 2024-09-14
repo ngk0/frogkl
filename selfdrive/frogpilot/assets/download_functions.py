@@ -64,7 +64,7 @@ def get_remote_file_size(url):
       return None
     response.raise_for_status()
     return int(response.headers.get('Content-Length', 0))
-  except (requests.RequestException, ValueError) as e:
+  except Exception as e:
     handle_request_error(e, None, None, None, None)
     return None
 

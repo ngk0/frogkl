@@ -1,6 +1,7 @@
 """Install exception handler for process crash."""
 import os
 import sentry_sdk
+import subprocess
 import traceback
 from datetime import datetime
 from enum import Enum
@@ -99,14 +100,16 @@ def capture_fingerprint(candidate, params, blocked=False):
   sentry_sdk.flush()
 
 
-def capture_tmux(params) -> None:
+def capture_tmux(process, params) -> None:
+  updated = params.get("Updated", encoding='utf-8')
+
   result = subprocess.run(['tmux', 'capture-pane', '-p', '-S', '-500'], stdout=subprocess.PIPE)
   lines = result.stdout.decode('utf-8').splitlines()
 
   if lines:
     with sentry_sdk.configure_scope() as scope:
       scope.set_extra("tmux_log", "\n".join(lines))
-      sentry_sdk.capture_message(f"-message placeholder-", level='info')
+      sentry_sdk.capture_message(f"{process} crashed - Last updated: {updated}", level='info')
       sentry_sdk.flush()
 
 

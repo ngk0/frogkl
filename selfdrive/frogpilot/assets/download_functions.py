@@ -89,13 +89,13 @@ def link_valid(url):
     return False
 
 def verify_download(file_path, url):
+  if not os.path.isfile(file_path):
+    print(f"File not found: {file_path}")
+    return False
+
   remote_file_size = get_remote_file_size(url)
   if remote_file_size is None:
     print(f"Error fetching remote size for {file_path}")
-    return False
-
-  if not os.path.isfile(file_path):
-    print(f"File not found: {file_path}")
     return False
 
   if remote_file_size != os.path.getsize(file_path):

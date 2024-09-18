@@ -22,8 +22,8 @@ from openpilot.system.athena.registration import register, UNREGISTERED_DONGLE_I
 from openpilot.common.swaglog import cloudlog, add_file_handler
 from openpilot.system.version import get_build_metadata, terms_version, training_version
 
-from openpilot.selfdrive.frogpilot.assets.model_manager import DEFAULT_MODEL, DEFAULT_MODEL_NAME
-from openpilot.selfdrive.frogpilot.frogpilot_functions import convert_params, frogpilot_boot_functions, setup_frogpilot, uninstall_frogpilot
+from openpilot.selfdrive.frogpilot.controls.lib.frogpilot_functions import convert_params, frogpilot_boot_functions, setup_frogpilot, uninstall_frogpilot
+from openpilot.selfdrive.frogpilot.controls.lib.model_manager import DEFAULT_MODEL, DEFAULT_MODEL_NAME
 
 
 def manager_init() -> None:
@@ -118,10 +118,6 @@ def manager_init() -> None:
     ("ClairvoyantDriverDrives", "0"),
     ("ClairvoyantDriverLiveTorqueParameters", ""),
     ("ClairvoyantDriverScore", "0"),
-    ("ClairvoyantDriverV2CalibrationParams", ""),
-    ("ClairvoyantDriverV2Drives", "0"),
-    ("ClairvoyantDriverV2LiveTorqueParameters", ""),
-    ("ClairvoyantDriverV2Score", "0"),
     ("ClusterOffset", "1.015"),
     ("Compass", "0"),
     ("ConditionalExperimental", "1"),
@@ -138,6 +134,7 @@ def manager_init() -> None:
     ("CustomSignals", "frog"),
     ("CustomSounds", "frog"),
     ("CustomUI", "1"),
+    ("CydiaTune", "0"),
     ("DecelerationProfile", "1"),
     ("DeveloperUI", "0"),
     ("DeviceManagement", "1"),
@@ -169,6 +166,7 @@ def manager_init() -> None:
     ("ForceStandstill", "0"),
     ("ForceStops", "0"),
     ("FPSCounter", "1"),
+    ("FrogsGoMooTune", "1"),
     ("FullMap", "0"),
     ("GasRegenCmd", "1"),
     ("GMapKey", ""),
@@ -335,15 +333,16 @@ def manager_init() -> None:
     ("StaticPedalsOnUI", "0"),
     ("SteerRatio", ""),
     ("SteerRatioStock", ""),
+    ("StockTune", "0"),
     ("StoppedTimer", "0"),
     ("StoppingDistance", "3"),
     ("TacoTune", "0"),
     ("ToyotaDoors", "0"),
-    ("ToyotaTune", "1"),
     ("TrafficFollow", "0.5"),
     ("TrafficJerkAcceleration", "50"),
     ("TrafficJerkDanger", "100"),
     ("TrafficJerkSpeed", "50"),
+    ("TrafficMode", "0"),
     ("TrafficPersonalityProfile", "1"),
     ("TuningInfo", "1"),
     ("TurnAggressiveness", "100"),

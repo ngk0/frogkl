@@ -217,7 +217,8 @@ class RadarD:
     FrogPilotVariables.update_frogpilot_params()
 
     self.clairvoyant_driver_v2 = self.frogpilot_toggles.clairvoyant_driver_v2
-    self.e2e_longitudinal_model = self.frogpilot_toggles.clairvoyant_driver or self.frogpilot_toggles.secretgoodopenpilot_model
+    #self.e2e_longitudinal_model = self.frogpilot_toggles.clairvoyant_driver or self.frogpilot_toggles.secretgoodopenpilot_model
+    self.e2e_longitudinal_model = self.frogpilot_toggles.secretgoodopenpilot_model
     self.update_toggles = False
 
   def update(self, sm: messaging.SubMaster, rr):

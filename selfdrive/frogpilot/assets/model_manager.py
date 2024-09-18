@@ -113,7 +113,7 @@ class ModelManager:
       return []
 
   def update_model_params(self, model_info, repo_url):
-    available_models, available_model_names, experimental_models, navigation_models, radarless_models = [], [], [], [], []
+    available_models, available_model_names, experimental_models, navigation_models, poseless_models, radarless_models, velocity_models = [], [], [], [], [], [], []
 
     for model in model_info:
       available_models.append(model['id'])

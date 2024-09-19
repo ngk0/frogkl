@@ -4,6 +4,30 @@ from openpilot.selfdrive.car.chrysler.values import CAR
 Ecu = car.CarParams.Ecu
 
 FW_VERSIONS = {
+  CAR.JEEP_CHEROKEE_5TH_GEN: {
+    (Ecu.combinationMeter, 0x18da60f1, None): [
+      b'PLACEHOLDER',
+    ],
+    (Ecu.srs, 0x18dac0f1, None): [
+      b'PLACEHOLDER',
+    ],
+    (Ecu.abs, 0x18da28f1, None): [
+      b'PLACEHOLDER',
+    ],
+    # TODO: Find a diagnostic address for the radar
+    #(Ecu.fwdRadar, 0x753, None): [
+    #  b'PLACEHOLDER',
+    #],
+    (Ecu.eps, 0x18da30f1, None): [
+      b'PLACEHOLDER',
+    ],
+    (Ecu.engine, 0x18da10f1, None): [
+      b'PLACEHOLDER',
+    ],
+    (Ecu.transmission, 0x18da18f1, None): [
+      b'PLACEHOLDER',
+    ],
+  },
   CAR.CHRYSLER_PACIFICA_2017_HYBRID: {
     (Ecu.combinationMeter, 0x742, None): [
       b'68239262AH',

@@ -74,6 +74,12 @@ class CAR(Platforms):
     JEEP_GRAND_CHEROKEE.specs,
   )
 
+  JEEP_CHEROKEE_5TH_GEN = ChryslerPlatformConfig(
+    [ChryslerCarDocs("Jeep Cherokee 2019-23")],
+    ChryslerCarSpecs(mass=1747., wheelbase=2.70, steerRatio=17.0, minSteerSpeed=18.5),
+    dbc_dict('chrysler_cusw', None),
+  )
+
   # Ram
   RAM_1500_5TH_GEN = ChryslerPlatformConfig(
     [ChryslerCarDocs("Ram 1500 2019-24", car_parts=CarParts.common([CarHarness.ram]))],
@@ -92,7 +98,10 @@ class CAR(Platforms):
 
 class CarControllerParams:
   def __init__(self, CP):
-    self.STEER_STEP = 2  # 50 Hz
+    if CP.carFingerprint in CUSW_CARS:
+      self.STEER_STEP = 1  # 100 Hz
+    else:
+      self.STEER_STEP = 2  # 50 Hz
     self.STEER_ERROR_MAX = 80
     if CP.carFingerprint in RAM_HD:
       self.STEER_DELTA_UP = 14
@@ -102,6 +111,10 @@ class CarControllerParams:
       self.STEER_DELTA_UP = 6
       self.STEER_DELTA_DOWN = 6
       self.STEER_MAX = 350  # EPS allows more, up to 350?
+    elif CP.carFingerprint in CUSW_CARS:
+      self.STEER_DELTA_UP = 4
+      self.STEER_DELTA_DOWN = 4
+      self.STEER_MAX = 250  # TODO: re-validate this, Panda is at 261
     else:
       self.STEER_DELTA_UP = 3
       self.STEER_DELTA_DOWN = 3
@@ -113,7 +126,7 @@ STEER_THRESHOLD = 120
 RAM_DT = {CAR.RAM_1500_5TH_GEN, }
 RAM_HD = {CAR.RAM_HD_5TH_GEN, }
 RAM_CARS = RAM_DT | RAM_HD
-
+CUSW_CARS = {CAR.JEEP_CHEROKEE_5TH_GEN, }
 
 CHRYSLER_VERSION_REQUEST = bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER]) + \
   p16(0xf132)
